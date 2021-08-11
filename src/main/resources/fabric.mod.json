@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "kanyequoter",
+  "version": "0.0.1",
+  "name": "KanyeQuoter",
+  "description": "Writes a book full of the greatest wisdome",
+  "authors": [
+    "rockerle"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/KanyeQuoter/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "kanye.KanyeQuoter"
+      ]
+  },
+  "mixins": [
+    "KanyeQuoter.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
