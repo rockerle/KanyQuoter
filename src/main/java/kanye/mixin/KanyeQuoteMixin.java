@@ -33,7 +33,7 @@ public class KanyeQuoteMixin {
             }
 
             if (player.getInventory().getMainHandStack().getItem() == Items.WRITABLE_BOOK)
-                player.networkHandler.sendPacket(new BookUpdateC2SPacket(player.getInventory().selectedSlot, pages, Optional.of("Book of endless wisdom")));
+                player.networkHandler.sendPacket(new BookUpdateC2SPacket(player.getInventory().selectedSlot, pages, Optional.of("Book of Endless Wisdom")));
 
             ci.cancel();
         }
