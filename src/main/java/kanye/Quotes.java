@@ -3,7 +3,6 @@ package kanye;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -16,7 +15,11 @@ public class Quotes {
 
     private static URL url;
 
+    private List<String> quotes = new ArrayList<>();
+    public boolean readyToRead;
+
     public Quotes(String url){
+        readyToRead = false;
         try {
             this.url = new URL(url);
         } catch (MalformedURLException e) {
@@ -24,6 +27,24 @@ public class Quotes {
         }
     }
 
+    public List<String> getPages(){
+        return quotes;
+    }
+
+    public void emptyPages(){
+        quotes.clear();
+    }
+
+    public void getQuotes(int n){
+        new Thread(() -> {
+            System.out.println("ready to grab quotes");
+            for(int i=0;i<n;i++)
+                quotes.add(getContent());
+
+            readyToRead = true;
+            System.out.println("Quotes are grabbed");
+        }).start();
+    }
     public String getContent() throws NullPointerException {
 
         try {
