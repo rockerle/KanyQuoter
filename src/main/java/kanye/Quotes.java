@@ -37,12 +37,14 @@ public class Quotes {
 
     public void getQuotes(int n){
         new Thread(() -> {
-            System.out.println("ready to grab quotes");
-            for(int i=0;i<n;i++)
-                quotes.add(getContent());
-
+            for(int i=0;i<n;i++) {
+                String s = getContent();
+                if(!quotes.contains(s))
+                    quotes.add(s);
+                else
+                    i--;
+            }
             readyToRead = true;
-            System.out.println("Quotes are grabbed");
         }).start();
     }
     public String getContent() throws NullPointerException {
@@ -50,7 +52,7 @@ public class Quotes {
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             if (connection == null)
-                throw new NullPointerException("No connection available");
+                throw new NullPointerException("Kanye.Rest having a little rest for now or is unavailable");
 
             StringBuilder answer = new StringBuilder();
             InputStream is = connection.getInputStream();
