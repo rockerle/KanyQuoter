@@ -16,10 +16,10 @@ public class Quotes {
     private static URL url;
 
     private List<String> quotes = new ArrayList<>();
-    public boolean readyToRead;
+    public boolean readyToRead, readyToFake, stopBookUse;
 
     public Quotes(String url){
-        readyToRead = false;
+        readyToRead = readyToFake = stopBookUse = false;
         try {
             this.url = new URL(url);
         } catch (MalformedURLException e) {
@@ -35,6 +35,11 @@ public class Quotes {
         quotes.clear();
     }
 
+    public void getQuotes(int n, boolean fake){
+        if(fake) {
+            getQuotes(n);
+        }
+    }
     public void getQuotes(int n){
         new Thread(() -> {
             for(int i=0;i<n;i++) {
@@ -47,6 +52,7 @@ public class Quotes {
             readyToRead = true;
         }).start();
     }
+
     public String getContent() throws NullPointerException {
 
         try {

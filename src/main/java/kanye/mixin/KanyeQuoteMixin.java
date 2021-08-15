@@ -1,11 +1,15 @@
 package kanye.mixin;
 
 import kanye.Quotes;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,6 +24,7 @@ public abstract class KanyeQuoteMixin {
 
     @Shadow public abstract void sendSystemMessage(Text message, UUID sender);
 
+    @Shadow @Final protected MinecraftClient client;
     private Quotes kq;
 
     @Inject(at=@At("TAIL"),method="<init>")
@@ -27,15 +32,20 @@ public abstract class KanyeQuoteMixin {
         kq = new Quotes("http://api.kanye.rest");
     }
 
+    @Inject(at=@At("HEAD"), method="useBook", cancellable = true)
+    public void useBook(ItemStack book, Hand hand, CallbackInfo ci){
+        if(kq.stopBookUse) ci.cancel();
+    }
     @Inject( at = @At("HEAD"), method = "sendChatMessage", cancellable = true)
     public void onChatMessage(String message, CallbackInfo ci){
 
         if(message.equals(".kanye")){
+            kq.stopBookUse = true;
             kq.getQuotes(50);
             ci.cancel();
             return;
-        }
-        else if(message.startsWith(".kanye")){
+        } else if(message.startsWith(".kanye")){
+            kq.stopBookUse = true;
             String m = message.substring(7);
             try {
                 int pages = Integer.valueOf(m);
@@ -60,11 +70,10 @@ public abstract class KanyeQuoteMixin {
         if (kq.readyToRead) {
             ClientPlayerEntity player = (ClientPlayerEntity) (Object) this;
             List<String> pages = kq.getPages();
-
             if (player.getInventory().getMainHandStack().getItem() == Items.WRITABLE_BOOK)
                 player.networkHandler.sendPacket(new BookUpdateC2SPacket(player.getInventory().selectedSlot, pages, Optional.of("Book of Endless Wisdom")));
-
             kq.readyToRead = false;
+            kq.stopBookUse = false;
             kq.emptyPages();
         }
     }
