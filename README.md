@@ -8,7 +8,8 @@ Requires the [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-ap
 # Usage
 
 Simply write .kanye into the chat and send it, while holding a book and quill in your main hand.
-with .kanye &lt;number&gt; you can select a number of quotes to write into the book. The max amount of quotes for one book are 50.
+
+With .kanye &lt;number&gt; you can select up to 50 quotes.
 ![2021-08-11_16 35 32](https://user-images.githubusercontent.com/16375280/129049227-bd7f6b4d-84e2-410c-bc0d-6ce365b13765.png)
 
 ![2021-08-11_16 36 35](https://user-images.githubusercontent.com/16375280/129049318-8115146f-eff8-4e49-808f-f9a4b895e292.png)
