@@ -1,5 +1,5 @@
 
-# KanyQuoter
+# KanyeQuoter
 
 Fabric Mod for Minecraft 1.17.1 that writes 50 quotes from Kanye.Rest into a Book &amp; Quill
 
