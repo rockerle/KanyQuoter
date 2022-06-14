@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "kanyequoter",
-  "version": "1.2",
+  "version": "1.4",
   "name": "KanyeQuoter",
   "description": "Writes a book full of the greatest wisdome",
   "authors": [
@@ -20,8 +20,8 @@
     "KanyeQuoter.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.6",
+    "fabricloader": ">=0.14.7",
     "fabric": "*",
-    "minecraft": "1.18.1"
+    "minecraft": "1.19"
   }
 }
