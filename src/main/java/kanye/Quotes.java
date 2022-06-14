@@ -2,10 +2,10 @@ package kanye;
 
 import org.json.JSONObject;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,11 +35,6 @@ public class Quotes {
         quotes.clear();
     }
 
-    public void getQuotes(int n, boolean fake){
-        if(fake) {
-            getQuotes(n);
-        }
-    }
     public void getQuotes(int n){
         new Thread(() -> {
             for(int i=0;i<n;i++) {
@@ -53,22 +48,22 @@ public class Quotes {
         }).start();
     }
 
-    public String getContent() throws NullPointerException {
+    public String getContent() {
 
         try {
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            if (connection == null)
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            if (conn == null)
                 throw new NullPointerException("Kanye.Rest having a little rest for now or is unavailable");
 
             StringBuilder answer = new StringBuilder();
-            InputStream is = connection.getInputStream();
+            InputStream is = conn.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             JSONObject line = new JSONObject(br.readLine());
             answer.append("\"" + line.getString("quote") + "\"\n\n");
             answer.append("§o§l- Kanye West§r\n");
 
             br.close();
-            connection.disconnect();
+            conn.disconnect();
 
             return answer.toString();
         } catch (Exception e) {
