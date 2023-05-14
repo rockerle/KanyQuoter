@@ -18,7 +18,7 @@ jobs:
         with:
           arguments: build
       - name: publish release
-        uses: actions/upload-artefacts@v3
+        uses: actions/upload-artefact@v3
         with:
           name: release
           path: build/libs
