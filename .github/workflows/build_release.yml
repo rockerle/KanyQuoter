@@ -16,7 +16,7 @@ jobs:
       - name: Build
         uses: ./gradlew build
       - name: publish release
-        uses: actions/upload-artefact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
           name: release
           path: build/libs/
