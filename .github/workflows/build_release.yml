@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artefact@v3
         with:
           name: release
-          path: build/libs
+          path: build/libs/
