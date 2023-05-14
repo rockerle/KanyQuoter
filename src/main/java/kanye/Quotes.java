@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Quotes {
 
-    private static URL url;
+    private URL url;
 
     private List<String> quotes = new ArrayList<>();
     public boolean readyToRead, readyToFake, stopBookUse;
@@ -50,7 +50,7 @@ public class Quotes {
 
     public String getContent() {
 
-        try {
+        try{
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             if (conn == null)
                 throw new NullPointerException("Kanye.Rest having a little rest for now or is unavailable");
