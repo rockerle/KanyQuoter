@@ -3,7 +3,7 @@
   "id": "kanyequoter",
   "version": "1.4",
   "name": "KanyeQuoter",
-  "description": "Writes a book full of the greatest wisdome",
+  "description": "Writes a book full of the greatest wisdom",
   "authors": [
     "rockerle"
   ],
@@ -20,8 +20,8 @@
     "KanyeQuoter.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.7",
+    "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.19"
+    "minecraft": "1.19.x"
   }
 }
