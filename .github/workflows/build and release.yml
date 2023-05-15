@@ -29,4 +29,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/libs/*.jar"
-          tag: KanyeQuoter + ${{ steps.ver.outputs.VER }}
+          tag: KanyeQuoter-${{ steps.ver.outputs.VER }}
+          allowUpdates: true
+          replaceArtefacts: true
