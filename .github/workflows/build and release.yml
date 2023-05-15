@@ -21,13 +21,13 @@ jobs:
       - name: Build
         run: ./gradlew build
       - name: Get Mod Version
-        run: echo gradle.properties
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          title: test release project.mod_version
+        run: echo $DEV_PROP
+#      - name: Create a Release
+#        uses: elgohr/Github-Release-Action@v4
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          title: test release project.mod_version
 #      - name: publish release
 #        uses: actions/upload-artifact@v3
 #        with:
