@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "KanyeQuoteMixin"
+    "KanyeQuoteMixin",
+    "ClientPlayNetworkHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
