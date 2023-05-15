@@ -29,15 +29,4 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/libs/*.jar"
-          tag: ${{ steps.ver.outputs.VER }}
-#      - name: Create a Release
-#        uses: elgohr/Github-Release-Action@v4
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          title: test release ${{ steps.ver.outputs.VER }}
-#      - name: publish release
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: release
-#          path: build/libs/
+          tag: "KanyeQuoter" + ${{ steps.ver.outputs.VER }}
