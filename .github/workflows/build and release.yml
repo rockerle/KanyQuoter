@@ -19,8 +19,13 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Build
+        id: built
+        run: echo "JAR=$(./gradlew build)" >> $GITHUB_OUTPUT
+      - name: Unzip
         id: jar
-        run: ./gradlew build
+        run: |
+              echo "JAR=$(unzip *.zip)" >> $GITHUB_OUTPUT
+              echo "ls -a"
       - name: Get Mod Version
         id: ver
         run: echo "VER=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
