@@ -32,4 +32,4 @@ jobs:
           name: KanyeQuoter-${{ steps.ver.outputs.VER }}
           tag: ${{ steps.ver.outputs.VER }}
           allowUpdates: true
-          replacesArtefacts: true
+          replacesArtifacts: true
