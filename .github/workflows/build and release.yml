@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: test release
+          title: test release ${{ github.run_id }}
 #      - name: publish release
 #        uses: actions/upload-artifact@v3
 #        with:
