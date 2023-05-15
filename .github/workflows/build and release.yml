@@ -25,6 +25,7 @@ jobs:
         id: jar
         run: |
               echo "JAR=$(unzip build/libs/release.zip)" >> $GITHUB_OUTPUT
+              cd build/libs
               ls -a
       - name: Get Mod Version
         id: ver
