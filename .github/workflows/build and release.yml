@@ -25,16 +25,16 @@ jobs:
         id: jar
         run: |
               echo "JAR=$(unzip *.zip)" >> $GITHUB_OUTPUT
-              echo "ls -a"
+              ls -a
       - name: Get Mod Version
         id: ver
         run: echo "VER=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          title: test release ${{ steps.ver.outputs.VER }}
+#      - name: Create a Release
+#        uses: elgohr/Github-Release-Action@v4
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          title: test release ${{ steps.ver.outputs.VER }}
 #      - name: publish release
 #        uses: actions/upload-artifact@v3
 #        with:
