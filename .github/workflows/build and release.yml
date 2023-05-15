@@ -20,7 +20,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build
         id: built
-        run: echo "JAR=$(./gradlew build)" >> $GITHUB_OUTPUT
+        run: ./gradlew build
       - name: Unzip
         id: jar
         run: |
