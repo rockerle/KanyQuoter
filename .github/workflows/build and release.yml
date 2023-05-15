@@ -21,7 +21,9 @@ jobs:
       - name: Build
         run: ./gradlew build
       - name: Get Mod Version
-        run: ./gradlew -q printVersion
+        env:
+          version: ./gradlew -q printVersion
+        run: echo "Current version of the mod is $version"
 #      - name: Create a Release
 #        uses: elgohr/Github-Release-Action@v4
 #        env:
