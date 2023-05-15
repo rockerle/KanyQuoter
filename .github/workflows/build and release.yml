@@ -5,7 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,15 +22,14 @@ jobs:
       - name: Build
         id: built
         run: ./gradlew build
-      - name: Unzip
-        id: jar
-        run: |
-              echo "JAR=$(unzip build/libs/release.zip)" >> $GITHUB_OUTPUT
-              cd build/libs
-              ls -a
       - name: Get Mod Version
         id: ver
         run: echo "VER=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
+      - name: Create a Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/libs/*.jar"
+          tag: ${{ steps.ver.outputs.VER }}
 #      - name: Create a Release
 #        uses: elgohr/Github-Release-Action@v4
 #        env:
