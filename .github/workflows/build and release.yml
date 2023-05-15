@@ -19,17 +19,17 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Build
-        run: ./gradlew build
+        id: jar
+        run: ./gradlew build>> "$GITHUB_OUTPUT"
       - name: Get Mod Version
+        id: ver
+        run: echo "./gradlew -q printVersion" >> "$GITHUB_OUTPUT"
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@v4
         env:
-          version: ./gradlew -q printVersion
-        run: echo "Current version of the mod is $version"
-#      - name: Create a Release
-#        uses: elgohr/Github-Release-Action@v4
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          title: test release project.mod_version
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: test release ${{ steps.ver.outputs.* }}
 #      - name: publish release
 #        uses: actions/upload-artifact@v3
 #        with:
