@@ -20,7 +20,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build
         id: jar
-        run: ./gradlew build>> "$GITHUB_OUTPUT"
+        run: ./gradlew build
       - name: Get Mod Version
         id: ver
         run: echo "VER=$(./gradlew -q printVersion)" >> "$GITHUB_OUTPUT"
